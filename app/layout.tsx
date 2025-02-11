@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { UIProvider } from "./providers/UIProvider";
 
 export const metadata: Metadata = {
-	title: "Goodle",
-	description: "Created By GLEAP",
+	title: "GLAPE",
+	description: "Powered By GLEAP",
 };
 
 export default function RootLayout({
