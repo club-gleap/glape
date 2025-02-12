@@ -4,5 +4,5 @@ export default function LoginPage(){
 	return 
 	<p>"こんにちは"</p>;
 	<button>Login</button>;
-
+	
 }
