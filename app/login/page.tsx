@@ -1,4 +1,4 @@
 
 export default function LoginPage(){
-	return <div>Login</div>;
+	return <button>Login</button>;
 }
