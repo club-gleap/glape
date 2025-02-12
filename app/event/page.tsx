@@ -1,79 +1,78 @@
 "use client"
-import { Box, Button, Center ,Checkbox,Flex,UnorderedList,ListItem} from "@chakra-ui/react";
-import { babelIncludeRegexes } from "next/dist/build/webpack-config";
+import { Box, Button, Center, Stack, Table,Thead,Tbody,Tr,Th,Td,TableContainer} from "@chakra-ui/react";
 import React, { useState } from 'react';
-import {
-    Table,
-    Thead,
-    Tbody,
-    Tfoot,
-    Tr,
-    Th,
-    Td,
-    TableCaption,
-    TableContainer,
-  } from '@chakra-ui/react'
-
+import { period, diffTimes, attendanceIcon } from './event-utils';
 
 export default function Home() {
+  //仮のデータ。本番ではどこかからデータを読み込む？
+  const [members, setMembers] = useState({
+    "田中": false,
+    "佐藤": true,
+    "斎藤": true,
+    "中田": false,
+  });
+  const eventName: string = "部会"
+  const startTime = new Date('2025-02-14T18:30:00');
+  const finishTime = new Date('2025-02-15T18:40:00');
+  const eventContent: string = "イベントの内容あああああああああああああああああああああああああああああああああああああああああああああ"
+  const isAllDay = true;
+  //ここまで仮のデータ
 
-    {/* 仮のデータ。本番ではどこかからデータを読み込む？ */}
-    const [members, setMembers] = useState({
-        "田中": false,
-        "佐藤": true,
-        "斎藤": true,
-    });
-    const eventContent: string = "イベントの内容あああああああああああああああああああああああああああああああああああああああああああああ"
 
-    
-	return (
-        <Center flexDirection="column">
-            <Box borderColor="black" borderWidth="1px" width='90%' mt="20px">
-                <Box fontSize="30px" textDecoration="underline">イベント詳細</Box>
-                <Center>
-                    <Box fontSize="20px" width='90%'>{eventContent}</Box>
-                </Center>
-            </Box>
-            <Button fontSize="50px" borderColor="black" borderWidth="1px" width='90%' height="90px" mt="20px">出欠を登録</Button>
-            <Box width='90%' mt="20px">
-                <Box fontSize="30px" textDecoration="underline">メンバー</Box>
-                <UnorderedList>
-                    {/* membersリストの中身を順番に表示 */}
-                    {Object.entries(members).map(([name, attendance], index) => (
-                        <Center key={index}>        
-                            <Flex width="85%" mt="10px" justify="space-between">
-                                <ListItem fontSize="20px">{name}</ListItem>
-                                {/* 画面上で変更できないチェックボックス */}
-                                <Checkbox colorScheme='green' isChecked={attendance}></Checkbox>
-                            </Flex>
-                        </Center>
-                        ))
-                    }
-                </UnorderedList>
-            </Box>
-            <TableContainer width='90%' mt="20px">
-                    <Table variant='striped' colorScheme='gray'>
-                        <Thead>
-                            <Tr>
-                                <Th>名前</Th>
-                                <Th isNumeric>出欠状況</Th>
-                            </Tr>
-                        </Thead>
-                        <Tbody>
-                            {/* membersリストの中身を順番に表示 */}
-                            {Object.entries(members).map(([name, attendance], index) => (
-                                    <Tr width="85%" mt="10px" >
-                                        <Td fontSize="20px">{name}</Td>
-                                        {/* 画面上で変更できないチェックボックス */}
-                                        <Td isNumeric>
-                                            <Checkbox colorScheme='green' isChecked={attendance}></Checkbox>
-                                        </Td>
-                                    </Tr>
-                                ))
-                            }
-                        </Tbody>
-                    </Table>
-            </TableContainer>
+  // 出席ボタンを押したときの処理
+  const attendButtonClick = () => {
+
+  };
+
+  //残り時間
+  const restTimes = diffTimes(startTime);
+
+  return (
+    <Center flexDirection="column">
+      <Stack spacing={8} width={{ base: "90%", md: "50%" }} mt="20px">
+        <Box borderColor="black" borderWidth="1px">
+          <Center fontSize="50px" ml="10px">{eventName}</Center>
+          <Center fontSize="30px" ml="10px">
+            {/* getMonth()だけだと本来の月－１で表示されるので＋１する必要がある */}
+            {startTime.getFullYear()}  {startTime.getMonth() + 1}/{startTime.getDate()}  {period(isAllDay, startTime, finishTime)}
+          </Center>
+          <Center fontSize="20px" color="red" ml="10px">
+            あと{restTimes.days}日{restTimes.hours}時間{restTimes.minutes}分
+          </Center>
+          <Center>
+            <Box fontSize="20px" width="90%" ml="10px">{eventContent}</Box>
+          </Center>
+        </Box>
+
+        {/* 出欠登録ボタンを中央に配置 */}
+        <Center>
+        <Button onClick={attendButtonClick} fontSize="40px" borderColor="black" borderWidth="1px" width="80%" height="90px">
+            出欠登録
+          </Button>
         </Center>
-    );
+
+        <TableContainer borderColor="black" borderWidth="1px">
+          <Table variant='striped' colorScheme='gray'>
+            <Thead>
+              <Tr>
+                <Th>名前</Th>
+                <Th isNumeric>出欠状況</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              {/* membersリストの中身を順番に表示 */}
+              {Object.entries(members).map(([name, attendance], index) => (
+                <Tr key={index}>
+                  <Td fontSize="20px">{name}</Td>
+                  <Td isNumeric>
+                    {attendanceIcon(attendance)}
+                  </Td>
+                </Tr>
+              ))}
+            </Tbody>
+          </Table>
+        </TableContainer>
+      </Stack>
+    </Center>
+  );
 }
