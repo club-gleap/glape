@@ -6,15 +6,15 @@ export default function LoginPage(){
 		<Center h="100vh" flexDirection="column">
 			<Box fontSize="30px">メンバーログイン</Box>
 			<Flex width={["80%","50%"]} mt="20px">
-				<EmailIcon boxSize="40px" mr="10px"></EmailIcon>
+				<EmailIcon boxSize="40px" mr="10px"/>
 				<FormControl>
-					<Input type="email"></Input>
+					<Input type="email"/>
 				</FormControl>
 			</Flex>
 			<Flex width={["80%","50%"]} mt="20px">
-				<LockIcon boxSize="40px" mr="10px"></LockIcon>
+				<LockIcon boxSize="40px" mr="10px"/>
 				<FormControl>
-					<Input type="password"></Input>
+					<Input type="password"/>
 				</FormControl>
 			</Flex>
 			<Button mt="50px">ログイン</Button>
