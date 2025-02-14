@@ -1,7 +1,7 @@
 "use client"
 import { Box, Button, Center, Stack, Table,Thead,Tbody,Tr,Th,Td,TableContainer} from "@chakra-ui/react";
 import React, { useState } from 'react';
-import { period, diffTimes, attendanceIcon } from './event-utils';
+import { dateOfTheEvent, diffTimes, attendanceIcon } from './event-utils';
 
 export default function Home() {
   //仮のデータ。本番ではどこかからデータを読み込む？
@@ -12,8 +12,8 @@ export default function Home() {
     "中田": false,
   });
   const eventName: string = "部会"
-  const startTime = new Date('2025-02-14T18:30:00');
-  const finishTime = new Date('2025-02-15T18:40:00');
+  const startTime = new Date('2025-12-14T18:30:00');
+  const finishTime = new Date('2025-12-15T18:40:00');
   const eventContent: string = "イベントの内容あああああああああああああああああああああああああああああああああああああああああああああ"
   const isAllDay = true;
   //ここまで仮のデータ
@@ -24,8 +24,10 @@ export default function Home() {
 
   };
 
+
+  const now = new Date()
   //残り時間
-  const restTimes = diffTimes(startTime);
+  const restTimes = diffTimes(now, startTime);
 
   return (
     <Center flexDirection="column">
@@ -34,7 +36,7 @@ export default function Home() {
           <Center fontSize="50px" ml="10px">{eventName}</Center>
           <Center fontSize="30px" ml="10px">
             {/* getMonth()だけだと本来の月－１で表示されるので＋１する必要がある */}
-            {startTime.getFullYear()}  {startTime.getMonth() + 1}/{startTime.getDate()}  {period(isAllDay, startTime, finishTime)}
+            {startTime.getFullYear()}  {startTime.getMonth() + 1}/{startTime.getDate()}  {dateOfTheEvent(isAllDay, startTime, finishTime)}
           </Center>
           <Center fontSize="20px" color="red" ml="10px">
             あと{restTimes.days}日{restTimes.hours}時間{restTimes.minutes}分
@@ -44,7 +46,6 @@ export default function Home() {
           </Center>
         </Box>
 
-        {/* 出欠登録ボタンを中央に配置 */}
         <Center>
         <Button onClick={attendButtonClick} fontSize="40px" borderColor="black" borderWidth="1px" width="80%" height="90px">
             出欠登録
@@ -60,7 +61,6 @@ export default function Home() {
               </Tr>
             </Thead>
             <Tbody>
-              {/* membersリストの中身を順番に表示 */}
               {Object.entries(members).map(([name, attendance], index) => (
                 <Tr key={index}>
                   <Td fontSize="20px">{name}</Td>
