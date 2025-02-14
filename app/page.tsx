@@ -28,7 +28,7 @@ export default function Page() {
 						>
 						<Button type="submit" w={{base:"15em", md:"18em", lg:"20em"}} minHeight="20px" size={"lg"} leftIcon={<FaDiscord />} colorScheme={"pink"}>Discordでログイン・登録</Button>
 						</form>
-						<Button w={{base:"15em", md:"18em", lg:"20em"}} minHeight="20px" size={"lg"} leftIcon={<FaEnvelope />} colorScheme={"blue"}>メールアドレスでログイン</Button>
+						<Button as={Link} href="/login" w={{base:"15em", md:"18em", lg:"20em"}} minHeight="20px" size={"lg"} leftIcon={<FaEnvelope />} colorScheme={"blue"}>メールアドレスでログイン</Button>
 						<Button w={{base:"15em", md:"18em", lg:"20em"}} minHeight="20px" size={"lg"} leftIcon={<FaCheck />} colorScheme={"green"}>新規登録</Button>
 						<HStack>
 							<Text>Powered By</Text>
