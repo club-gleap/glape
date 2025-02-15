@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { UIProvider } from "./providers/UIProvider";
 import { Box } from "@chakra-ui/react";
-import Header from "./components/header";
-import Footer from "./components/footer";
+import Header, { headerHeight } from "./components/header";
+import Footer, { footerHeight } from "./components/footer";
 import SafeArea from "./components/safeArea";
 
 export const metadata: Metadata = {
-	title: "Goodle",
-	description: "Created By GLEAP",
+	title: "GLAPE",
+	description: "Powered By GLEAP",
 };
 
 export default function RootLayout({
@@ -22,7 +22,7 @@ export default function RootLayout({
 					<UIProvider>
 						<SafeArea />
 						<Header />
-						<Box h={{base:"100%", md:"calc(100% - 50px)"}} w="100%" mt={{base:"0", md:"50px"}}>
+						<Box h={{base:"", md:"100%"}} w="100%" mt={{base:"0", md:headerHeight}} pb={{base:footerHeight, md:"0"}}>
 						{children}
 						</Box>
 						<Footer />

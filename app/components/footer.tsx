@@ -7,9 +7,12 @@ import { GoHomeFill } from "react-icons/go";
 import { FaList } from "react-icons/fa6";
 import { MdAddBox, MdPeopleAlt } from "react-icons/md";
 
+
+export const footerHeight = "90px";
+
 export default function Footer() {
   return (
-    <Box as="footer" display={{md:"none"}} position="fixed" bottom="0" h="90px" w="100vw" bg="#812c99" color="white" justifyContent="center">
+    <Box as="footer" display={{md:"none"}} position="fixed" bottom="0" h={footerHeight} w="100vw" bg="#812c99" color="white" justifyContent="center">
       <HStack h="100%" w="100%" justifyContent="space-between" alignItems="flex-start" px="2" pt="2">
         <Link href="/home">
           <VStack w="4em" gap={0.5}>
