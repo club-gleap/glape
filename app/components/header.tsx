@@ -6,6 +6,7 @@ import Link from "next/link";
 import { GoHomeFill } from "react-icons/go";
 import { IoIosListBox } from "react-icons/io";
 import { MdAddBox, MdPeopleAlt } from "react-icons/md";
+import { RiSettings4Fill } from "react-icons/ri";
 
 
 export const headerHeight = "50px";
@@ -19,30 +20,36 @@ export default function Header() {
             <Image src="/img/glape-logo-white.svg" display={{base:"none", md:"block"}} h="70%" alt="" />
           </Flex>
           <HStack h="100%" w="100%" gap={{md:"2", lg:"5"}} alignItems="center" justifyContent="flex-end" flex="1">
-          <Link href="/home">
-            <HStack w="6em" gap={0.5}>
-              <GoHomeFill size="2em" />
-              <Text fontSize="sm">ホーム</Text>
-            </HStack>
-          </Link>
-          <Link href="/list">
-            <HStack w="6em" gap={0.5}>
-              <IoIosListBox size="2em" />
-              <Text fontSize="sm">一覧</Text>
-            </HStack>
-          </Link>
-          <Link href="/create">
-            <HStack w="6em" gap={0.5}>
-              <MdAddBox size="2em" />
-              <Text fontSize="sm">追加</Text>
-            </HStack>
-          </Link>
-          <Link href="/members">
-            <HStack w="6em" gap={0.5}>
-              <MdPeopleAlt size="2em" />
-              <Text fontSize="sm">メンバー</Text>
-            </HStack>
-          </Link>
+            <Link href="/home">
+              <HStack w="6em" gap={0.5} justifyContent="center">
+                <GoHomeFill size="2em" />
+                <Text fontSize="sm">ホーム</Text>
+              </HStack>
+            </Link>
+            <Link href="/list">
+              <HStack w="6em" gap={0.5} justifyContent="center">
+                <IoIosListBox size="2em" />
+                <Text fontSize="sm">一覧</Text>
+              </HStack>
+            </Link>
+            <Link href="/create">
+              <HStack w="6em" gap={0.5} justifyContent="center">
+                <MdAddBox size="2em" />
+                <Text fontSize="sm">追加</Text>
+              </HStack>
+            </Link>
+            <Link href="/members">
+              <HStack w="6em" gap={0.5} justifyContent="center">
+                <MdPeopleAlt size="2em" />
+                <Text fontSize="sm">メンバー</Text>
+              </HStack>
+            </Link>
+            <Link href="/settings">
+              <HStack w="6em" gap={0.5} justifyContent="center">
+                <RiSettings4Fill size="2em" />
+                <Text fontSize="sm">設定</Text>
+              </HStack>
+            </Link>
           </HStack>
         </Flex>
         </Box>

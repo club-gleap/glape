@@ -4,8 +4,9 @@ import { Box, Image, HStack, VStack, Text } from "@chakra-ui/react";
 import Link from "next/link";
 // icons
 import { GoHomeFill } from "react-icons/go";
-import { FaList } from "react-icons/fa6";
+import { IoIosListBox } from "react-icons/io";
 import { MdAddBox, MdPeopleAlt } from "react-icons/md";
+import { RiSettings4Fill } from "react-icons/ri";
 
 
 export const footerHeight = "90px";
@@ -13,7 +14,7 @@ export const footerHeight = "90px";
 export default function Footer() {
   return (
     <Box as="footer" display={{md:"none"}} position="fixed" bottom="0" h={footerHeight} w="100vw" bg="#812c99" color="white" justifyContent="center">
-      <HStack h="100%" w="100%" justifyContent="space-between" alignItems="flex-start" px="2" pt="2">
+      <HStack h="100%" w="100%" justifyContent="space-between" alignItems="flex-start" px="1" pt="2">
         <Link href="/home">
           <VStack w="4em" gap={0.5}>
             <GoHomeFill size="2em" />
@@ -22,7 +23,7 @@ export default function Footer() {
         </Link>
         <Link href="/list">
           <VStack w="4em" gap={0.5}>
-            <FaList size="2em" />
+            <IoIosListBox size="2em" />
             <Text fontSize="xs">一覧</Text>
           </VStack>
         </Link>
@@ -36,6 +37,12 @@ export default function Footer() {
           <VStack w="4em" gap={0.5}>
             <MdPeopleAlt size="2em" />
             <Text fontSize="xs">メンバー</Text>
+          </VStack>
+        </Link>
+        <Link href="/settings">
+          <VStack w="4em" gap={0.5}>
+            <RiSettings4Fill size="2em" />
+            <Text fontSize="xs">設定</Text>
           </VStack>
         </Link>
       </HStack>

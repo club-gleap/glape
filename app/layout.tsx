@@ -22,7 +22,7 @@ export default function RootLayout({
 					<UIProvider>
 						<SafeArea />
 						<Header />
-						<Box h={{base:"", md:"100%"}} w="100%" mt={{base:"0", md:headerHeight}} pb={{base:footerHeight, md:"0"}}>
+						<Box h={{base:"", md:"100%"}} w="100%" pt={{base:"0", md:headerHeight}} pb={{base:footerHeight, md:"0"}}>
 						{children}
 						</Box>
 						<Footer />
