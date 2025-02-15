@@ -26,13 +26,13 @@ export default function Header() {
                 <Text fontSize="sm">ホーム</Text>
               </HStack>
             </Link>
-            <Link href="/list">
+            <Link href="/events">
               <HStack w="6em" gap={0.5} justifyContent="center">
                 <IoIosListBox size="2em" />
                 <Text fontSize="sm">一覧</Text>
               </HStack>
             </Link>
-            <Link href="/create">
+            <Link href="/events/add">
               <HStack w="6em" gap={0.5} justifyContent="center">
                 <MdAddBox size="2em" />
                 <Text fontSize="sm">追加</Text>
