@@ -1,7 +1,9 @@
 "use client"
 import { Box, Button, Center, Stack, Table,Thead,Tbody,Tr,Th,Td,TableContainer} from "@chakra-ui/react";
 import React, { useState } from 'react';
-import { dateOfTheEvent, diffTimes, attendanceIcon } from './event-utils';
+import { attendanceIcon } from "@/features/event/components/attendanceIcon";
+import { useDiffTimes } from "@/features/event/components/useDiffTimes";
+import { useDateOfTheEvent } from "@/features/event/components/useDateOfTheEvent";
 
 export default function Home() {
   //仮のデータ。本番ではどこかからデータを読み込む？
@@ -11,12 +13,14 @@ export default function Home() {
     "斎藤": true,
     "中田": false,
   });
-  const eventName: string = "部会"
+
+  const eventName = "部会"
   const startTime = new Date('2025-12-14T18:30:00');
-  const finishTime = new Date('2025-12-15T18:40:00');
+  const finishTime = new Date('2025-12-14T18:40:00');
   const eventContent: string = "イベントの内容あああああああああああああああああああああああああああああああああああああああああああああ"
-  const isAllDay = true;
+  const isAllDay = false;
   //ここまで仮のデータ
+ 
 
 
   // 出席ボタンを押したときの処理
@@ -24,22 +28,24 @@ export default function Home() {
 
   };
 
-
   const now = new Date()
   //残り時間
-  const restTimes = diffTimes(now, startTime);
+  const restTime = useDiffTimes(now, startTime);
+
+  const dateOfTheEvent = useDateOfTheEvent(isAllDay, startTime, finishTime)
 
   return (
     <Center flexDirection="column">
       <Stack spacing={8} width={{ base: "90%", md: "50%" }} mt="20px">
         <Box borderColor="black" borderWidth="1px">
-          <Center fontSize="50px" ml="10px">{eventName}</Center>
+          <Center fontSize="50px" ml="10px">
+            <Box fontSize="50px">{eventName}</Box>
+          </Center>
           <Center fontSize="30px" ml="10px">
-            {/* getMonth()だけだと本来の月－１で表示されるので＋１する必要がある */}
-            {startTime.getFullYear()}  {startTime.getMonth() + 1}/{startTime.getDate()}  {dateOfTheEvent(isAllDay, startTime, finishTime)}
+            {dateOfTheEvent}
           </Center>
           <Center fontSize="20px" color="red" ml="10px">
-            あと{restTimes.days}日{restTimes.hours}時間{restTimes.minutes}分
+            あと{restTime.days}日{restTime.hours}時間{restTime.minutes}分
           </Center>
           <Center>
             <Box fontSize="20px" width="90%" ml="10px">{eventContent}</Box>
