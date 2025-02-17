@@ -1,7 +1,6 @@
 "use client";
 
 import { Box, Stack, Center } from "@chakra-ui/react";
-// import Link from "next/link";
 
 export default function Page() {
   return (
