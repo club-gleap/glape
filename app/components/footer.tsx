@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { Box, HStack, VStack, Text } from "@chakra-ui/react";
 import Link from "next/link";
@@ -8,13 +8,29 @@ import { IoIosListBox } from "react-icons/io";
 import { MdAddBox, MdPeopleAlt } from "react-icons/md";
 import { RiSettings4Fill } from "react-icons/ri";
 
-
 export const footerHeight = "85px";
 
 export default function Footer() {
   return (
-    <Box as="footer" display={{md:"none"}} position="fixed" zIndex="1000" bottom="0" h={footerHeight} w="100vw" bg="#812c99" color="white" justifyContent="center">
-      <HStack h="100%" w="100%" justifyContent="space-evenly" alignItems="flex-start" pt="2">
+    <Box
+      as="footer"
+      display={{ md: "none" }}
+      position="fixed"
+      zIndex="1000"
+      bottom="0"
+      h={footerHeight}
+      w="100vw"
+      bg="#812c99"
+      color="white"
+      justifyContent="center"
+    >
+      <HStack
+        h="100%"
+        w="100%"
+        justifyContent="space-evenly"
+        alignItems="flex-start"
+        pt="2"
+      >
         <Link href="/home">
           <VStack w="4em" gap={0.5}>
             <GoHomeFill size="1.5em" />
