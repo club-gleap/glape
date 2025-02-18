@@ -30,35 +30,36 @@ export default function Footer() {
         justifyContent="space-evenly"
         alignItems="flex-start"
         pt="2"
+        fontSize="xs"
       >
         <Link href="/home">
           <VStack w="4em" gap={0.5}>
-            <GoHomeFill size="1.5em" />
-            <Text fontSize="xs">ホーム</Text>
+            <GoHomeFill size="2em" />
+            <Text>ホーム</Text>
           </VStack>
         </Link>
         <Link href="/list">
           <VStack w="4em" gap={0.5}>
-            <IoIosListBox size="1.5em" />
-            <Text fontSize="xs">一覧</Text>
+            <IoIosListBox size="2em" />
+            <Text>一覧</Text>
           </VStack>
         </Link>
         <Link href="/events/add">
           <VStack w="4em" gap={0.5}>
-            <MdAddBox size="1.5em" />
-            <Text fontSize="xs">追加</Text>
+            <MdAddBox size="2em" />
+            <Text>追加</Text>
           </VStack>
         </Link>
         <Link href="/members">
           <VStack w="4em" gap={0.5}>
-            <MdPeopleAlt size="1.5em" />
-            <Text fontSize="xs">メンバー</Text>
+            <MdPeopleAlt size="2em" />
+            <Text>メンバー</Text>
           </VStack>
         </Link>
         <Link href="/settings">
           <VStack w="4em" gap={0.5}>
-            <RiSettings4Fill size="1.5em" />
-            <Text fontSize="xs">設定</Text>
+            <RiSettings4Fill size="2em" />
+            <Text>設定</Text>
           </VStack>
         </Link>
       </HStack>
