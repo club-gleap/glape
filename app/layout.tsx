@@ -3,7 +3,7 @@ import { UIProvider } from "./providers/UIProvider";
 
 export const metadata: Metadata = {
   title: "GLAPE",
-  description: "Powered By GLEAP",
+  description: "Powered by GLEAP",
 };
 
 export default function RootLayout({

@@ -100,7 +100,7 @@ export default function Page() {
               新規登録
             </Button>
             <HStack>
-              <Text>Powered By</Text>
+              <Text>Powered by</Text>
               <Link
                 href="https://circle.gleap.tech/"
                 target="_blank"
