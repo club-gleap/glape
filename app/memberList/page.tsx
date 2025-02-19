@@ -16,7 +16,7 @@ import React, { useState } from "react";
 
 export default function MemberList() {
   //仮のデータ。本番ではどこかからデータを読み込む？
-  const [allMembers, setMembers] = useState({
+  const [allMembers] = useState({
     田中: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjt-bzPefGvMhHKHwghRbqNmlUqLpx_LhFoMq5Tq5Sl-eaeinrP_2sdSxIjdYHk6R5vOsIwYN_grUOWysKpGnExDqtLhb9Cs3CN3ZUHeJ6x3J7TrS4kGsiuLpZXnqfF_Lv0oSNJtqUAXyA/s800/icon_business_man02.png",
     佐藤: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhoMp7sL7BcgiOAIa6UbFCOJ9rjYJHKZ8S-YU6WgcJh_tkt7adUvtSEnt0BifDnAcz6wKaCW20NZlmDA0CqZMEsFVIDsDIr6rv1rbhvddWgEb_FYIKVAbr9IqAwRl_sT6ujPhh857uINp8/s800/icon_business_man03.png",
     斎藤: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjWj5thiii4nvWaL_R6iECTT3TmuwQYsLGT8PC3GxKuiNnHfSzSjOP4YK2anyMXLsLhVMSW6kJShcgea2OkAHu3T3GmNNVOXn9ABwt-v1iaHT1sx7SNN8i9o_KUCWdUDdCCAi5cMky3m74/s800/icon_business_man10.png",
