@@ -43,7 +43,7 @@ export default function MemberList() {
             <Tbody>
               {Object.entries(allMembers).map(([name, image], index) => (
                 <Tr key={index}>
-                  <Td textAlign="center" w="100%">
+                  <Td>
                     <HStack spacing={8}>
                       <img
                         src={image} // 画像URLをsrc属性に設定
