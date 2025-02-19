@@ -26,7 +26,7 @@ export default function MemberList() {
 
   return (
     <Center flexDirection="column">
-      <Stack spacing={8} width={{ base: "90%", md: "30%" }} mt="20px">
+      <Stack width={{ base: "90%", md: "30%" }} mt="20px">
         <TableContainer borderColor="black" borderWidth="1px">
           <Table
             variant="striped"
