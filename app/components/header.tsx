@@ -2,15 +2,55 @@
 
 import { Box, Image, Flex, HStack, Text } from "@chakra-ui/react";
 import Link from "next/link";
-// icons
-import { GoHomeFill } from "react-icons/go";
-import { IoIosListBox } from "react-icons/io";
-import { MdAddBox, MdPeopleAlt } from "react-icons/md";
-import { RiSettings4Fill } from "react-icons/ri";
+import { usePathname } from "next/navigation";
+import { GoHomeFill, GoHome } from "react-icons/go";
+import { IoIosListBox, IoIosList } from "react-icons/io";
+import {
+  MdAddBox,
+  MdOutlineAddBox,
+  MdPeopleAlt,
+  MdOutlinePeopleAlt,
+} from "react-icons/md";
+import { RiSettings4Fill, RiSettings4Line } from "react-icons/ri";
 
 export const headerHeight = "50px";
 
+const items = [
+  {
+    href: "/home",
+    filledIcon: GoHomeFill,
+    outlineIcon: GoHome,
+    label: "ホーム",
+  },
+  {
+    href: "/events",
+    filledIcon: IoIosListBox,
+    outlineIcon: IoIosList,
+    label: "一覧",
+  },
+  {
+    href: "/events/add",
+    filledIcon: MdAddBox,
+    outlineIcon: MdOutlineAddBox,
+    label: "追加",
+  },
+  {
+    href: "/members",
+    filledIcon: MdPeopleAlt,
+    outlineIcon: MdOutlinePeopleAlt,
+    label: "メンバー",
+  },
+  {
+    href: "/settings",
+    filledIcon: RiSettings4Fill,
+    outlineIcon: RiSettings4Line,
+    label: "設定",
+  },
+];
+
 export default function Header() {
+  const pathname = usePathname();
+
   return (
     <Box
       as="header"
@@ -45,36 +85,20 @@ export default function Header() {
           justifyContent="flex-end"
           flex="1"
         >
-          <Link href="/home">
-            <HStack w="6em" gap={0.5} justifyContent="center">
-              <GoHomeFill size="2em" />
-              <Text fontSize="sm">ホーム</Text>
-            </HStack>
-          </Link>
-          <Link href="/events">
-            <HStack w="6em" gap={0.5} justifyContent="center">
-              <IoIosListBox size="2em" />
-              <Text fontSize="sm">一覧</Text>
-            </HStack>
-          </Link>
-          <Link href="/events/add">
-            <HStack w="6em" gap={0.5} justifyContent="center">
-              <MdAddBox size="2em" />
-              <Text fontSize="sm">追加</Text>
-            </HStack>
-          </Link>
-          <Link href="/members">
-            <HStack w="6em" gap={0.5} justifyContent="center">
-              <MdPeopleAlt size="2em" />
-              <Text fontSize="sm">メンバー</Text>
-            </HStack>
-          </Link>
-          <Link href="/settings">
-            <HStack w="6em" gap={0.5} justifyContent="center">
-              <RiSettings4Fill size="2em" />
-              <Text fontSize="sm">設定</Text>
-            </HStack>
-          </Link>
+          {items.map((link) => {
+            const Icon =
+              pathname === link.href ? link.filledIcon : link.outlineIcon;
+            const labelText =
+              pathname === link.href ? <b>{link.label}</b> : link.label;
+            return (
+              <Link key={link.href} href={link.href}>
+                <HStack w="6em" gap={0.5} justifyContent="center">
+                  <Icon size="2em" />
+                  <Text fontSize="sm">{labelText}</Text>
+                </HStack>
+              </Link>
+            );
+          })}
         </HStack>
       </Flex>
     </Box>
