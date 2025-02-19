@@ -1,7 +1,6 @@
 "use client";
 import {
   Box,
-  Button,
   Center,
   Stack,
   Table,
@@ -11,6 +10,7 @@ import {
   Th,
   Td,
   TableContainer,
+  HStack,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 
@@ -26,27 +26,34 @@ export default function MemberList() {
 
   return (
     <Center flexDirection="column">
-      <Stack spacing={8} width={{ base: "90%", md: "50%" }} mt="20px">
+      <Stack spacing={8} width={{ base: "90%", md: "30%" }} mt="20px">
         <TableContainer borderColor="black" borderWidth="1px">
-          <Table variant="striped" colorScheme="gray">
+          <Table
+            variant="striped"
+            colorScheme="gray"
+            sx={{ borderCollapse: "collapse" }}
+          >
             <Thead>
               <Tr>
-                <Th>Icon</Th>
-                <Th>名前</Th>
+                <Th fontSize="20px" textAlign="center">
+                  メンバー
+                </Th>
               </Tr>
             </Thead>
             <Tbody>
               {Object.entries(allMembers).map(([name, image], index) => (
                 <Tr key={index}>
-                  <Td>
-                    <img
-                      src={image} // 画像URLをsrc属性に設定
-                      width="30px" // サイズを指定（必要に応じて調整）
-                      height="40px"
-                      style={{ borderRadius: "50%" }} // 画像を円形にするスタイル
-                    />
+                  <Td textAlign="center" w="100%">
+                    <HStack spacing={8}>
+                      <img
+                        src={image} // 画像URLをsrc属性に設定
+                        width="30px" // サイズを指定（必要に応じて調整）
+                        height="40px"
+                        style={{ borderRadius: "50%" }} // 画像を円形にするスタイル
+                      />
+                      <Box>{name}</Box>
+                    </HStack>
                   </Td>
-                  <Td fontSize="20px">{name}</Td>
                 </Tr>
               ))}
             </Tbody>
