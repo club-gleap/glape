@@ -17,8 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body>
-        <Box h="100vh" w="100vw">
+      <body style={{ height: "100vh", width: "100vw" }}>
           <UIProvider>
             <SafeArea />
             <Header />
@@ -32,7 +31,6 @@ export default function RootLayout({
             </Box>
             <Footer />
           </UIProvider>
-        </Box>
       </body>
     </html>
   );
