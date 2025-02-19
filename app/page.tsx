@@ -12,8 +12,7 @@ import {
   Center,
 } from "@chakra-ui/react";
 import Link from "next/link";
-// icons
-import { FaCheck, FaDiscord, FaEnvelope } from "react-icons/fa";
+import { FaCheck, FaEnvelope } from "react-icons/fa";
 
 export default function Page() {
   return (
