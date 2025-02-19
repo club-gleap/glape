@@ -66,6 +66,7 @@ export default function Home() {
         <Center>
           <Button
             onClick={attendButtonClick}
+            colorScheme="green"
             fontSize="20px"
             borderColor="black"
             borderWidth="1px"
