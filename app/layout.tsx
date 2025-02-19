@@ -2,20 +2,20 @@ import type { Metadata } from "next";
 import { UIProvider } from "./providers/UIProvider";
 
 export const metadata: Metadata = {
-	title: "Goodle",
-	description: "Created By GLEAP",
+  title: "GLAPE",
+  description: "Powered by GLEAP",
 };
 
 export default function RootLayout({
-	children,
+  children,
 }: Readonly<{
-	children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-	return (
-		<html lang="ja">
-			<body>
-				<UIProvider>{children}</UIProvider>
-			</body>
-		</html>
-	);
+  return (
+    <html lang="ja">
+      <body>
+        <UIProvider>{children}</UIProvider>
+      </body>
+    </html>
+  );
 }
