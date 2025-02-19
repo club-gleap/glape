@@ -10,8 +10,8 @@ export const useDateOfTheEvent = (
     if (allDay) {
       return (
         <Box>
-          {startTime.getFullYear()} {startTime.getMonth() + 1}/
-          {startTime.getDate()} 終日
+          {startTime.getFullYear()}年{startTime.getMonth() + 1}月
+          {startTime.getDate()}日 終日
         </Box>
       );
     }
@@ -19,8 +19,8 @@ export const useDateOfTheEvent = (
     else {
       return (
         <Box>
-          {startTime.getFullYear()} {startTime.getMonth() + 1}/
-          {startTime.getDate()} {startTime.getHours()}:{startTime.getMinutes()}{" "}
+          {startTime.getFullYear()}年{startTime.getMonth() + 1}月
+          {startTime.getDate()}日{startTime.getHours()}:{startTime.getMinutes()}{" "}
           ~
         </Box>
       );
@@ -31,12 +31,12 @@ export const useDateOfTheEvent = (
       return (
         <Box>
           <Box>
-            {startTime.getFullYear()} {startTime.getMonth() + 1}/
-            {startTime.getDate()} ~
+            {startTime.getFullYear()}年{startTime.getMonth() + 1}月
+            {startTime.getDate()}日~
           </Box>
           <Box>
-            {finishTime.getFullYear()} {finishTime.getMonth() + 1}/
-            {finishTime.getDate()} 終日
+            {finishTime.getFullYear()}年{finishTime.getMonth() + 1}月
+            {finishTime.getDate()}日 終日
           </Box>
         </Box>
       );
@@ -45,8 +45,8 @@ export const useDateOfTheEvent = (
     else if (startTime.getDate() == finishTime.getDate()) {
       return (
         <Box>
-          {startTime.getFullYear()} {startTime.getMonth() + 1}/
-          {startTime.getDate()} {startTime.getHours()}:{startTime.getMinutes()}{" "}
+          {startTime.getFullYear()}年{startTime.getMonth() + 1}月
+          {startTime.getDate()}日{startTime.getHours()}:{startTime.getMinutes()}{" "}
           ~ {finishTime.getHours()}:{finishTime.getMinutes()}
         </Box>
       );
@@ -56,13 +56,13 @@ export const useDateOfTheEvent = (
       return (
         <Box>
           <Box>
-            {startTime.getFullYear()} {startTime.getMonth() + 1}/
-            {startTime.getDate()} {startTime.getHours()}:
+            {startTime.getFullYear()}年{startTime.getMonth() + 1}月
+            {startTime.getDate()}日{startTime.getHours()}:
             {startTime.getMinutes()} ~
           </Box>
           <Box>
-            {finishTime.getFullYear()} {finishTime.getMonth() + 1}/
-            {finishTime.getDate()} {finishTime.getHours()}:
+            {finishTime.getFullYear()}年{finishTime.getMonth() + 1}月
+            {finishTime.getDate()}日{finishTime.getHours()}:
             {finishTime.getMinutes()}
           </Box>
         </Box>

@@ -19,7 +19,7 @@ import { useDateOfTheEvent } from "@/features/event/components/useDateOfTheEvent
 
 export default function Home() {
   //仮のデータ。本番ではどこかからデータを読み込む？
-  const [members, setMembers] = useState({
+  const [members] = useState({
     田中: false,
     佐藤: true,
     斎藤: true,
@@ -47,10 +47,10 @@ export default function Home() {
     <Center flexDirection="column">
       <Stack spacing={8} width={{ base: "90%", md: "50%" }} mt="20px">
         <Box borderColor="black" borderWidth="1px">
-          <Center fontSize="50px" ml="10px">
-            <Box fontSize="50px">{eventName}</Box>
-          </Center>
           <Center fontSize="30px" ml="10px">
+            {eventName}
+          </Center>
+          <Center fontSize="25px" ml="10px">
             {dateOfTheEvent}
           </Center>
           <Center fontSize="20px" color="red" ml="10px">
@@ -66,7 +66,7 @@ export default function Home() {
         <Center>
           <Button
             onClick={attendButtonClick}
-            fontSize="40px"
+            fontSize="20px"
             borderColor="black"
             borderWidth="1px"
             width="80%"
