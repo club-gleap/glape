@@ -13,17 +13,28 @@ import {
   TableContainer,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { useRouter, useParams } from "next/navigation";
 import { attendanceIcon } from "@/features/event/components/attendanceIcon";
 import { useDiffTimes } from "@/features/event/components/useDiffTimes";
 import { useDateOfTheEvent } from "@/features/event/components/useDateOfTheEvent";
+import { SyncStringStorage } from "jotai/ts3.8/vanilla/utils/atomWithStorage";
+
+const idToName: { [key: number]: any; }  = {//idから名前を取得するための仮データ。実際にはバックエンドでの処理。
+  3: "田中",
+  5: "佐藤",
+  7: "斎藤",
+  1228: "中田",
+};
 
 export default function Home() {
+  const eventId = useParams().eventId;
+  const router = useRouter();
   //仮のデータ。本番ではどこかからデータを読み込む？
   const [members] = useState({
-    田中: false,
-    佐藤: true,
-    斎藤: true,
-    中田: false,
+    3: false,
+    5: true,
+    7: true,
+    1228: false,
   });
 
   const eventName = "部会";
@@ -33,9 +44,11 @@ export default function Home() {
     "イベントの内容あああああああああああああああああああああああああああああああああああああああああああああ";
   const isAllDay = false;
   //ここまで仮のデータ
-
   // 出席ボタンを押したときの処理
-  const attendButtonClick = () => {};
+  const attendButtonClick = () => {
+    // 出欠登録ページに遷移
+    router.push(`/attendance/${eventId}`);
+  };
 
   const now = new Date();
   //残り時間
@@ -86,9 +99,9 @@ export default function Home() {
               </Tr>
             </Thead>
             <Tbody>
-              {Object.entries(members).map(([name, attendance], index) => (
+              {Object.entries(members).map(([id, attendance], index) => (
                 <Tr key={index}>
-                  <Td fontSize="20px">{name}</Td>
+                  <Td fontSize="20px">{idToName[Number(id)]}</Td>
                   <Td isNumeric>{attendanceIcon(attendance)}</Td>
                 </Tr>
               ))}
