@@ -16,7 +16,7 @@ import { FaCheck, FaEnvelope } from "react-icons/fa";
 
 export default function Page() {
   return (
-    <Box h="100%" w="100%" minHeight={{ base: "", md: "800px" }}>
+    <Box h="100%" w="100%">
       <Stack
         h="100%"
         w="100%"
