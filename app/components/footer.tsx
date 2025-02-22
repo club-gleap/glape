@@ -53,7 +53,7 @@ export default function Footer() {
   return (
     <Box
       as="footer"
-      display={{ md: "none" }}
+      display={{ lg: "none" }}
       position="fixed"
       zIndex="1000"
       bottom="0"

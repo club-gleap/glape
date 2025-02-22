@@ -60,7 +60,7 @@ export default function Header() {
       right="0"
       h={headerHeight}
       zIndex="1000"
-      display={{ base: "none", md: "block" }}
+      display={{ base: "none", lg: "block" }}
       bg="#812c99"
       color="white"
       borderTop="1px"
