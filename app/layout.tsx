@@ -7,7 +7,7 @@ import SafeArea from "./components/safeArea";
 
 export const metadata: Metadata = {
   title: "GLAPE",
-  description: "Powered By GLEAP",
+  description: "Powered by GLEAP",
 };
 
 export default function RootLayout({
