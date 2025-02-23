@@ -12,7 +12,8 @@ import {
   Center,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import { FaCheck, FaEnvelope } from "react-icons/fa";
+import discordLogin from "./serverAction";
+import { FaCheck, FaDiscord, FaEnvelope } from "react-icons/fa";
 
 export default function Page() {
   return (
@@ -66,10 +67,22 @@ export default function Page() {
               <br />
               これ１つで。
             </Text>
+            <form action={discordLogin}>
+              <Button
+                type="submit"
+                w={{ base: "15em", md: "18em", lg: "20em" }}
+                minHeight="20px"
+                size={"lg"}
+                leftIcon={<FaDiscord />}
+                colorScheme={"pink"}
+              >
+                Discordでログイン・登録
+              </Button>
+            </form>
             <Button
               as={Link}
               href="/login"
-              w={{ base: "15em", lg: "20em" }}
+              w={{ base: "15em", md: "18em", lg: "20em" }}
               minHeight="20px"
               size={"lg"}
               leftIcon={<FaEnvelope />}
@@ -87,7 +100,7 @@ export default function Page() {
               新規登録
             </Button>
             <HStack>
-              <Text>Powered By</Text>
+              <Text>Powered by</Text>
               <Link
                 href="https://circle.gleap.tech/"
                 target="_blank"
