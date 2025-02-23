@@ -11,11 +11,13 @@ import {
   Th,
   Td,
   TableContainer,
+  VStack,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { attendanceIcon } from "@/features/event/components/attendanceIcon";
 import { useDiffTimes } from "@/features/event/components/useDiffTimes";
 import { useDateOfTheEvent } from "@/features/event/components/useDateOfTheEvent";
+import { QRCodeSVG } from "qrcode.react";
 
 export default function Home() {
   //仮のデータ。本番ではどこかからデータを読み込む？
@@ -62,7 +64,10 @@ export default function Home() {
             </Box>
           </Center>
         </Box>
-
+        <VStack>
+          <Box>このページのQRコード</Box>
+          <QRCodeSVG value={window.location.href} />;
+        </VStack>
         <Center>
           <Button
             onClick={attendButtonClick}
@@ -76,7 +81,6 @@ export default function Home() {
             出欠登録
           </Button>
         </Center>
-
         <TableContainer borderColor="black" borderWidth="1px">
           <Table variant="striped" colorScheme="gray">
             <Thead>
