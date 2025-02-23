@@ -70,7 +70,7 @@ export default function Page() {
             <form action={discordLogin}>
               <Button
                 type="submit"
-                w={{ base: "15em", md: "18em", lg: "20em" }}
+                w={{ base: "16em", md: "20em" }}
                 minHeight="20px"
                 size={"lg"}
                 leftIcon={<FaDiscord />}
@@ -82,7 +82,7 @@ export default function Page() {
             <Button
               as={Link}
               href="/login"
-              w={{ base: "15em", md: "18em", lg: "20em" }}
+              w={{ base: "16em", md: "20em" }}
               minHeight="20px"
               size={"lg"}
               leftIcon={<FaEnvelope />}
@@ -91,7 +91,7 @@ export default function Page() {
               メールアドレスでログイン
             </Button>
             <Button
-              w={{ base: "15em", lg: "20em" }}
+              w={{ base: "16em", md: "20em" }}
               minHeight="20px"
               size={"lg"}
               leftIcon={<FaCheck />}

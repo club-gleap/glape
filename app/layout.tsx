@@ -3,7 +3,6 @@ import { UIProvider } from "./providers/UIProvider";
 import ContentArea from "./components/contentArea";
 import Header from "./components/header";
 import Footer from "./components/footer";
-import SafeArea from "./components/safeArea";
 
 export const metadata: Metadata = {
   title: "GLAPE",
@@ -19,7 +18,12 @@ export default function RootLayout({
     <html lang="ja">
       <body style={{ height: "100vh", width: "100vw" }}>
         <UIProvider>
-          <SafeArea />
+          <div
+            style={{
+              backgroundColor: "#812c99",
+              height: "env(safe-area-inset-top)",
+            }}
+          />
           <Header />
           <ContentArea>{children}</ContentArea>
           <Footer />
