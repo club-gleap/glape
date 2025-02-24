@@ -19,50 +19,72 @@ import { attendanceIcon } from "@/features/event/components/attendanceIcon";
 import { useDiffTimes } from "@/features/event/components/useDiffTimes";
 import { useDateOfTheEvent } from "@/features/event/components/useDateOfTheEvent";
 import { QRCodeSVG } from "qrcode.react";
+import { useParams } from "next/navigation";
 
 export default function Home() {
-  //仮のデータ。本番ではどこかからデータを読み込む？
-  const [members] = useState({
-    田中: false,
-    佐藤: true,
-    斎藤: true,
-    中田: false,
-  });
 
-  const eventName = "部会";
-  const startTime = new Date("2025-12-14T18:30:00");
-  const finishTime = new Date("2025-12-14T18:40:00");
-  const eventContent =
-    "イベントの内容あああああああああああああああああああああああああああああああああああああああああああああ";
-  const isAllDay = false;
+  //仮のデータ。
+
+  interface EventData {
+    [id: number]: {
+      name: string;
+      date: Date;
+      members: { [name: string]: boolean };
+    };
+  }
+
+  const eventData: EventData = {
+    1: {
+      name: "部会",
+      date: new Date("2025-12-14T18:30:00"),
+      members: {
+        田中太郎: true,
+        佐藤花子: false,
+      },
+    },
+
+    2: {
+      name: "部会2",
+      date: new Date("2024-12-14T18:00:00"),
+      members: {
+        田中太郎: false,
+        佐藤花子: false,
+      },
+    },
+  };
+
   //ここまで仮のデータ
 
   // 出席ボタンを押したときの処理
   const attendButtonClick = () => {};
 
+  //リンクからイベントIDを取得
+  const { eventId } = useParams();
   const now = new Date();
   //残り時間
-  const restTime = useDiffTimes(now, startTime);
+  const eventIdInt = Number(eventId);
 
-  const dateOfTheEvent = useDateOfTheEvent(isAllDay, startTime, finishTime);
+  const restTime = useDiffTimes(now, eventData[eventIdInt].date);
+
+  //終日と終了時間は実装するかわからないのでとりあえずnull
+  const dateOfTheEvent = useDateOfTheEvent(
+    null,
+    eventData[eventIdInt].date,
+    null
+  );
 
   return (
     <Center flexDirection="column">
       <Stack spacing={8} width={{ base: "90%", md: "50%" }} mt="20px">
         <Box borderColor="black" borderWidth="1px">
           <Center fontSize="30px" ml="10px">
-            {eventName}
+            {eventData[eventIdInt].name}
           </Center>
           <Center fontSize="25px" ml="10px">
             {dateOfTheEvent}
           </Center>
           <Center fontSize="20px" color="red" ml="10px">
             あと{restTime.days}日{restTime.hours}時間{restTime.minutes}分
-          </Center>
-          <Center>
-            <Box fontSize="20px" width="90%" ml="10px">
-              {eventContent}
-            </Box>
           </Center>
         </Box>
         <VStack>
@@ -92,7 +114,7 @@ export default function Home() {
               </Tr>
             </Thead>
             <Tbody>
-              {Object.entries(members).map(([name, attendance], index) => (
+              {Object.entries(eventData[eventIdInt].members).map(([name, attendance], index) => (
                 <Tr key={index}>
                   <Td fontSize="20px">{name}</Td>
                   <Td isNumeric>{attendanceIcon(attendance)}</Td>
