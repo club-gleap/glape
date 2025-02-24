@@ -31,7 +31,7 @@ export default function Home() {
   const eventName = "部会";
   const startTime = new Date("2025-12-14T18:30:00");
   const finishTime = new Date("2025-12-14T18:40:00");
-  const eventContent: string =
+  const eventContent =
     "イベントの内容あああああああああああああああああああああああああああああああああああああああああああああ";
   const isAllDay = false;
   //ここまで仮のデータ
@@ -66,6 +66,7 @@ export default function Home() {
         </Box>
         <VStack>
           <Box>このページのQRコード</Box>
+          {/* window.location.hrefは今のページのURLを表す */}
           <QRCodeSVG value={window.location.href} />;
         </VStack>
         <Center>
