@@ -17,7 +17,7 @@ import { FaCheck, FaDiscord, FaEnvelope } from "react-icons/fa";
 
 export default function Page() {
   return (
-    <Box h="100vh" w="100vw" minHeight="800px">
+    <Box h="100%" w="100%">
       <Stack
         h="100%"
         w="100%"
@@ -27,11 +27,11 @@ export default function Page() {
         <Center
           h={{ base: "", lg: "100%" }}
           w={{ base: "100%", lg: "50%" }}
-          p={{ base: "12px", md: "16px", lg: "20px" }}
+          p={{ base: "12px", lg: "20px" }}
           justifyContent={"center"}
         >
           <Image
-            src="img/glape-icon.png"
+            src="/img/glape-icon.png"
             w={{ base: "40%", lg: "75%" }}
             rounded={"15%"}
             alt=""
@@ -41,12 +41,12 @@ export default function Page() {
           h={{ base: "", lg: "100%" }}
           w={{ base: "100%", lg: "50%" }}
           minWidth={{ base: "0", lg: "550px" }}
-          p={{ base: "12px", md: "16px", lg: "20px" }}
+          p={{ base: "12px", lg: "20px" }}
         >
           <VStack
             h="100%"
             w="100%"
-            p={{ base: "12px", md: "16px", lg: "20px" }}
+            p={{ base: "12px", lg: "20px" }}
             bg="gray.100"
             rounded="0.5rem"
             gap="1.5rem"
@@ -54,12 +54,12 @@ export default function Page() {
             justifyContent={"center"}
           >
             <Image
-              src="img/glape-logo.svg"
-              w={{ base: "70%", md: "50%", lg: "300px" }}
+              src="/img/glape-logo.svg"
+              w={{ base: "50%", lg: "300px" }}
               alt=""
             ></Image>
             <Text
-              fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+              fontSize={{ base: "4xl", lg: "6xl" }}
               fontWeight={"bold"}
               color={"gray.700"}
             >
@@ -70,7 +70,7 @@ export default function Page() {
             <form action={discordLogin}>
               <Button
                 type="submit"
-                w={{ base: "15em", md: "18em", lg: "20em" }}
+                w={{ base: "16em", md: "20em" }}
                 minHeight="20px"
                 size={"lg"}
                 leftIcon={<FaDiscord />}
@@ -82,7 +82,7 @@ export default function Page() {
             <Button
               as={Link}
               href="/login"
-              w={{ base: "15em", md: "18em", lg: "20em" }}
+              w={{ base: "16em", md: "20em" }}
               minHeight="20px"
               size={"lg"}
               leftIcon={<FaEnvelope />}
@@ -91,7 +91,7 @@ export default function Page() {
               メールアドレスでログイン
             </Button>
             <Button
-              w={{ base: "15em", md: "18em", lg: "20em" }}
+              w={{ base: "16em", md: "20em" }}
               minHeight="20px"
               size={"lg"}
               leftIcon={<FaCheck />}
