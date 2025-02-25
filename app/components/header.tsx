@@ -4,7 +4,6 @@ import { Box, Image, Flex, HStack, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { GoHomeFill, GoHome } from "react-icons/go";
-import { IoIosListBox, IoIosList } from "react-icons/io";
 import {
   MdAddBox,
   MdOutlineAddBox,
@@ -23,13 +22,7 @@ const items = [
     label: "ホーム",
   },
   {
-    href: "/events",
-    filledIcon: IoIosListBox,
-    outlineIcon: IoIosList,
-    label: "一覧",
-  },
-  {
-    href: "/events/add",
+    href: "/home/add",
     filledIcon: MdAddBox,
     outlineIcon: MdOutlineAddBox,
     label: "追加",
