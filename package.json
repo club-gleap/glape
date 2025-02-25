@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.751.0",
+    "@aws-sdk/lib-dynamodb": "^3.751.0",
+    "@aws-sdk/util-dynamodb": "^3.751.0",
     "@chakra-ui/icons": "^2.2.4",
     "@chakra-ui/react": "2",
     "@emotion/react": "^11.14.0",
@@ -25,8 +28,8 @@
     "qrcode.react": "^4.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^7.1.5",
-    "react-icons": "^5.4.0"
+    "react-icons": "^5.4.0",
+    "react-router-dom": "^7.1.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
