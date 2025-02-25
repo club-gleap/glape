@@ -1,4 +1,12 @@
-import { Box, Flex, Text, VStack, Center, Image, Button } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Text,
+  VStack,
+  Center,
+  Image,
+  Button,
+} from "@chakra-ui/react";
 
 export default function Page() {
   return (
@@ -22,12 +30,7 @@ export default function Page() {
         >
           <Text>プロフィール</Text>
           <Center h="150px" w="100%">
-            <Image
-              src="img/glape-icon.png"
-              rounded="100%"
-              h="80%"
-              alt=""
-            ></Image>
+            <Image src="img/glape-icon.png" rounded="100%" h="80%" alt="" />
           </Center>
           <Box textAlign="left">
             <Text>名前: 田中</Text>
