@@ -1,4 +1,15 @@
-export const useDiffTimes = (startTime: Date, endTime: Date) => {
+export const useDiffTimes = (
+  startTime: Date | string,
+  endTime: Date | string
+) => {
+  if (!(startTime instanceof Date)) {
+    // Date オブジェクトでない場合は変換する
+    startTime = new Date(startTime);
+  }
+  if (!(endTime instanceof Date)) {
+    // Date オブジェクトでない場合は変換する
+    endTime = new Date(endTime);
+  }
   const diffMilliseconds = endTime.getTime() - startTime.getTime(); //時間差（ms）
   if (diffMilliseconds <= 0) {
     return { days: 0, hours: 0, minutes: 0 };

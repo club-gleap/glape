@@ -19,39 +19,11 @@ import { useDiffTimes } from "@/features/event/components/useDiffTimes";
 import { useDateOfTheEvent } from "@/features/event/components/useDateOfTheEvent";
 import { QRCodeSVG } from "qrcode.react";
 import { useParams } from "next/navigation";
+import { loadLocalStorage } from "@/features/event/components/componentLocalStorage";
 
 export default function Home() {
-  //仮のデータ。
-
-  interface EventData {
-    [id: string]: {
-      name: string;
-      date: Date;
-      members: { [name: string]: boolean };
-    };
-  }
-
-  const eventData: EventData = {
-    aaa: {
-      name: "部会",
-      date: new Date("2025-12-14T18:30:00"),
-      members: {
-        田中太郎: true,
-        佐藤花子: false,
-      },
-    },
-
-    sss: {
-      name: "部会2",
-      date: new Date("2024-12-14T18:00:00"),
-      members: {
-        田中太郎: false,
-        佐藤花子: false,
-      },
-    },
-  };
-
-  //ここまで仮のデータ
+  //ローカルストレージからファイルを読み込む
+  const eventData = loadLocalStorage("event");
 
   // 出席ボタンを押したときの処理
   const attendButtonClick = () => {};
@@ -62,7 +34,6 @@ export default function Home() {
 
   const now = new Date();
   //残り時間
-
   const restTime = useDiffTimes(now, eventData[eventId].date);
 
   //終日と終了時間は実装するかわからないのでとりあえずnull
@@ -113,7 +84,7 @@ export default function Home() {
                 ([name, attendance], index) => (
                   <Tr key={index}>
                     <Td fontSize="20px">{name}</Td>
-                    <Td isNumeric>{attendanceIcon(attendance)}</Td>
+                    <Td isNumeric>{attendanceIcon(attendance as boolean)}</Td>
                   </Tr>
                 )
               )}
