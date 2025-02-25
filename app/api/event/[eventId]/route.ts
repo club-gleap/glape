@@ -5,7 +5,6 @@ import {
 	GetCommand,
 	PutCommand,
 } from "@aws-sdk/lib-dynamodb";
-import { marshall } from "@aws-sdk/util-dynamodb";
 import { NextRequest, NextResponse } from "next/server";
 
 const client = new DynamoDBClient({});
