@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 export const useDateOfTheEvent = (
-  allDay: boolean,
+  allDay: boolean | null,
   startTime: Date,
   finishTime: Date | null
 ) => {

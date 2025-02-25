@@ -12,7 +12,7 @@ interface ContentAreaProps {
 export default function ContentArea({ children }: ContentAreaProps) {
   return (
     <Box
-      h={{ base: "", md: "100%" }}
+      h="100%"
       w="100%"
       pt={{ base: "0", md: headerHeight }}
       pb={{ base: footerHeight, md: "0" }}

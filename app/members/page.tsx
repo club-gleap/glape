@@ -11,6 +11,7 @@ import {
   Td,
   TableContainer,
   HStack,
+  Image,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 
@@ -27,7 +28,7 @@ export default function MemberList() {
   return (
     <Center flexDirection="column">
       <Stack width={{ base: "90%", md: "30%" }} mt="20px">
-        <TableContainer borderColor="black" borderWidth="1px">
+        <TableContainer rounded="10px" borderColor="gray.600" borderWidth="3px">
           <Table
             variant="striped"
             colorScheme="gray"
@@ -45,13 +46,13 @@ export default function MemberList() {
                 <Tr key={index}>
                   <Td>
                     <HStack spacing={8}>
-                      <img
+                      <Image
                         src={image} // 画像URLをsrc属性に設定
-                        width="30px" // サイズを指定（必要に応じて調整）
                         height="40px"
                         style={{ borderRadius: "50%" }} // 画像を円形にするスタイル
+                        alt=""
                       />
-                      <Box>{name}</Box>
+                      <Box fontWeight="bold">{name}</Box>
                     </HStack>
                   </Td>
                 </Tr>
