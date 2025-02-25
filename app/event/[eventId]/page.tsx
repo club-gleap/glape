@@ -12,7 +12,6 @@ import {
   Td,
   TableContainer,
   VStack,
-
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { attendanceIcon } from "@/features/event/components/attendanceIcon";
@@ -22,11 +21,10 @@ import { QRCodeSVG } from "qrcode.react";
 import { useParams } from "next/navigation";
 
 export default function Home() {
-
   //仮のデータ。
 
   interface EventData {
-    [id: number]: {
+    [id: string]: {
       name: string;
       date: Date;
       members: { [name: string]: boolean };
@@ -34,7 +32,7 @@ export default function Home() {
   }
 
   const eventData: EventData = {
-    1: {
+    aaa: {
       name: "部会",
       date: new Date("2025-12-14T18:30:00"),
       members: {
@@ -43,7 +41,7 @@ export default function Home() {
       },
     },
 
-    2: {
+    sss: {
       name: "部会2",
       date: new Date("2024-12-14T18:00:00"),
       members: {
@@ -59,26 +57,22 @@ export default function Home() {
   const attendButtonClick = () => {};
 
   //リンクからイベントIDを取得
-  const { eventId } = useParams();
+  const { eventId } = useParams<Record<string, string>>();
+
   const now = new Date();
   //残り時間
-  const eventIdInt = Number(eventId);
 
-  const restTime = useDiffTimes(now, eventData[eventIdInt].date);
+  const restTime = useDiffTimes(now, eventData[eventId].date);
 
   //終日と終了時間は実装するかわからないのでとりあえずnull
-  const dateOfTheEvent = useDateOfTheEvent(
-    null,
-    eventData[eventIdInt].date,
-    null
-  );
+  const dateOfTheEvent = useDateOfTheEvent(null, eventData[eventId].date, null);
 
   return (
     <Center flexDirection="column">
       <Stack spacing={8} width={{ base: "90%", md: "50%" }} mt="20px">
         <Box borderColor="black" borderWidth="1px">
           <Center fontSize="30px" ml="10px">
-            {eventData[eventIdInt].name}
+            {eventData[eventId].name}
           </Center>
           <Center fontSize="25px" ml="10px">
             {dateOfTheEvent}
@@ -114,12 +108,14 @@ export default function Home() {
               </Tr>
             </Thead>
             <Tbody>
-              {Object.entries(eventData[eventIdInt].members).map(([name, attendance], index) => (
-                <Tr key={index}>
-                  <Td fontSize="20px">{name}</Td>
-                  <Td isNumeric>{attendanceIcon(attendance)}</Td>
-                </Tr>
-              ))}
+              {Object.entries(eventData[eventId].members).map(
+                ([name, attendance], index) => (
+                  <Tr key={index}>
+                    <Td fontSize="20px">{name}</Td>
+                    <Td isNumeric>{attendanceIcon(attendance)}</Td>
+                  </Tr>
+                )
+              )}
             </Tbody>
           </Table>
         </TableContainer>
