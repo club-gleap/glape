@@ -1,9 +1,17 @@
 import { Box } from "@chakra-ui/react";
 export const useDateOfTheEvent = (
   allDay: boolean | null,
-  startTime: Date,
-  finishTime: Date | null
+  startTime: Date | string,
+  finishTime: Date | null | string
 ) => {
+  if (typeof startTime === "string") {
+    // Date オブジェクトでない場合は変換する
+    startTime = new Date(startTime);
+  }
+  if (typeof finishTime === "string") {
+    // Date オブジェクトでない場合は変換する
+    finishTime = new Date(finishTime);
+  }
   //getMonth()だけだと本来の月－１で表示されるので＋１する必要がある
   if (finishTime == null) {
     // 終了時間が指定されてない終日の場合
