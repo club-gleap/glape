@@ -12,6 +12,7 @@ import {
   TableContainer,
   HStack,
   Image,
+  Text,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 
@@ -27,8 +28,11 @@ export default function MemberList() {
 
   return (
     <Center flexDirection="column">
-      <Stack width={{ base: "90%", md: "30%" }} mt="20px">
-        <TableContainer rounded="10px" borderColor="gray.600" borderWidth="3px">
+      <Stack w={{ base: "100%", md: "40%" }} p={{ base: "12px", lg: "20px" }}>
+        <Text fontSize="4xl" textAlign="center" fontWeight="bold">
+          メンバー一覧
+        </Text>
+        <TableContainer rounded="10px" borderColor="gray.300" borderWidth="3px">
           <Table
             variant="striped"
             colorScheme="gray"

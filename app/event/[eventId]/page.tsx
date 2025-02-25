@@ -13,7 +13,7 @@ import {
   TableContainer,
   VStack,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React from "react";
 import { attendanceIcon } from "@/features/event/components/attendanceIcon";
 import { useDiffTimes } from "@/features/event/components/useDiffTimes";
 import { useDateOfTheEvent } from "@/features/event/components/useDateOfTheEvent";
@@ -72,7 +72,7 @@ export default function Home() {
     <Center flexDirection="column">
       <Stack spacing={8} width={{ base: "90%", lg: "50%" }} pt="20px">
         <Box
-          borderColor="gray.600"
+          borderColor="gray.300"
           borderWidth="3px"
           rounded="10px"
           fontWeight="bold"
@@ -80,7 +80,7 @@ export default function Home() {
           p={{ base: "2", lg: "4" }}
         >
           <Center fontSize="3xl" ml="10px">
-            {eventName}
+            {eventData[eventId].name}
           </Center>
           <Center fontSize={{ base: "lg", lg: "2xl" }} ml="10px">
             {dateOfTheEvent}
@@ -92,7 +92,7 @@ export default function Home() {
         <VStack>
           <Box>このページのQRコード</Box>
           {/* window.location.hrefは今のページのURLを表す */}
-          <QRCodeSVG value={window.location.href} />;
+          <QRCodeSVG value={window.location.href} />
         </VStack>
         <Center>
           <Button
@@ -104,7 +104,7 @@ export default function Home() {
             出欠登録
           </Button>
         </Center>
-        <TableContainer borderColor="gray.600" borderWidth="3px" rounded="10px">
+        <TableContainer borderColor="gray.300" borderWidth="3px" rounded="10px">
           <Table variant="striped" colorScheme="gray">
             <Thead>
               <Tr>
