@@ -1,4 +1,4 @@
-import { Flex, Text, VStack, Center, Image, Button } from "@chakra-ui/react";
+import { Box, Flex, Text, VStack, Center, Image, Button } from "@chakra-ui/react";
 
 export default function Page() {
   return (
@@ -29,9 +29,11 @@ export default function Page() {
               alt=""
             ></Image>
           </Center>
-          <Text>名前: 田中</Text>
-          <Text>学年: B1</Text>
-          <Text>学部: 工学部 電気情報工学科</Text>
+          <Box textAlign="left">
+            <Text>名前: 田中</Text>
+            <Text>学年: B1</Text>
+            <Text>学部: 工学部 電気情報工学科</Text>
+          </Box>
         </VStack>
         <Button w="10em" minHeight="20px" size={"lg"} colorScheme={"purple"}>
           ログアウト

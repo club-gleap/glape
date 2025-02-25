@@ -60,7 +60,7 @@ export default function Page() {
             <HStack w="100%" justifyContent="space-between">
               <VStack align="start">
                 <Text fontSize="3xl">{item.name}</Text>
-                <Text fontSize="xl">開催日：{item.startTime.toLocaleDateString()}</Text>
+                <Text fontSize="xl">{item.startTime.toLocaleDateString()}</Text>
                 <Text color="red.400">〆切：{timeLeft(item.startTime)}</Text>
               </VStack>
               <Button as={Link} size="md" href="/event/1" colorScheme="teal">

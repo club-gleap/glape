@@ -4,7 +4,6 @@ import { Box, HStack, VStack, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { GoHomeFill, GoHome } from "react-icons/go";
-import { IoIosListBox, IoIosList } from "react-icons/io";
 import {
   MdAddBox,
   MdOutlineAddBox,
