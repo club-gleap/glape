@@ -22,7 +22,7 @@ const items = [
     label: "ホーム",
   },
   {
-    href: "/home/add",
+    href: "/home/addEvent",
     filledIcon: MdAddBox,
     outlineIcon: MdOutlineAddBox,
     label: "追加",
