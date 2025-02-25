@@ -45,7 +45,6 @@ export async function POST(
 	const eventId = (await params).eventId;
 	const item = await request.json();
 	item.EventId = eventId;
-	console.log(marshall(item));
 
 	const command = new PutCommand({
 		TableName: "GlapeEvents",
