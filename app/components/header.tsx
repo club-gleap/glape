@@ -23,13 +23,7 @@ const items = [
     label: "ホーム",
   },
   {
-    href: "/events",
-    filledIcon: IoIosListBox,
-    outlineIcon: IoIosList,
-    label: "一覧",
-  },
-  {
-    href: "/events/add",
+    href: "/home/add",
     filledIcon: MdAddBox,
     outlineIcon: MdOutlineAddBox,
     label: "追加",

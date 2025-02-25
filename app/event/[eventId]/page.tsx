@@ -29,8 +29,7 @@ export default function Home() {
   const eventName = "部会";
   const startTime = new Date("2025-12-14T18:30:00");
   const finishTime = new Date("2025-12-14T18:40:00");
-  const eventContent: string =
-    "イベントの内容あああああああああああああああああああああああああああああああああああああああああああああ";
+  const eventContent: string = "イベント詳細";
   const isAllDay = false;
   //ここまで仮のデータ
 
@@ -45,19 +44,31 @@ export default function Home() {
 
   return (
     <Center flexDirection="column">
-      <Stack spacing={8} width={{ base: "90%", md: "50%" }} mt="20px">
-        <Box borderColor="black" borderWidth="1px">
-          <Center fontSize="30px" ml="10px">
+      <Stack spacing={8} width={{ base: "90%", lg: "50%" }} pt="20px">
+        <Box
+          borderColor="gray.600"
+          borderWidth="3px"
+          rounded="10px"
+          fontWeight="bold"
+          color="gray.800"
+          p={{ base: "2", lg: "4" }}
+        >
+          <Center fontSize="3xl" ml="10px">
             {eventName}
           </Center>
-          <Center fontSize="25px" ml="10px">
+          <Center fontSize={{ base: "lg", lg: "2xl" }} ml="10px">
             {dateOfTheEvent}
           </Center>
-          <Center fontSize="20px" color="red" ml="10px">
+          <Center fontSize={{ base: "md", lg: "xl" }} color="red" ml="10px">
             あと{restTime.days}日{restTime.hours}時間{restTime.minutes}分
           </Center>
           <Center>
-            <Box fontSize="20px" width="90%" ml="10px">
+            <Box
+              fontSize={{ base: "sm", lg: "lg" }}
+              width="90%"
+              ml="10px"
+              fontWeight="medium"
+            >
               {eventContent}
             </Box>
           </Center>
@@ -67,17 +78,14 @@ export default function Home() {
           <Button
             onClick={attendButtonClick}
             colorScheme="green"
-            fontSize="20px"
-            borderColor="black"
+            size="lg"
             borderWidth="1px"
-            width="80%"
-            height="90px"
           >
             出欠登録
           </Button>
         </Center>
 
-        <TableContainer borderColor="black" borderWidth="1px">
+        <TableContainer borderColor="gray.600" borderWidth="3px" rounded="10px">
           <Table variant="striped" colorScheme="gray">
             <Thead>
               <Tr>
