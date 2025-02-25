@@ -73,8 +73,8 @@ export default function eventAdd() {
             value={range}
             onChange={(e) => setRange(e.target.value)}
           >
-            <option value="only for club">部内に公開</option>
-            <option value="for public">一般に公開</option>
+            <option value="onlyForClub">部内に公開</option>
+            <option value="forPublic">一般に公開</option>
             <option value="secret">非公開</option>
           </Select>
         </Stack>
