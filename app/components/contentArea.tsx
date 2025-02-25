@@ -14,6 +14,7 @@ export default function ContentArea({ children }: ContentAreaProps) {
     <Box
       h="100%"
       w="100%"
+      overflowX="hidden"
       pt={{ base: "0", md: headerHeight }}
       pb={{ base: footerHeight, md: "0" }}
     >
