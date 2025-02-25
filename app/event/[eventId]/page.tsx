@@ -57,6 +57,7 @@ export default function Home() {
   const attendButtonClick = () => {};
 
   //リンクからイベントIDを取得
+  //<Record<string, string>>を付けることで型を文字列に指定して、エラーが起きないようにしている
   const { eventId } = useParams<Record<string, string>>();
 
   const now = new Date();
