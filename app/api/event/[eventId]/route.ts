@@ -11,12 +11,14 @@ import { NextRequest, NextResponse } from "next/server";
 const client = new DynamoDBClient({});
 const docClient = DynamoDBDocumentClient.from(client);
 
+type EventIdSlug = Promise<{ eventId: string }>;
+
 export async function GET(
 	request: NextRequest,
-	{ params }: { params: { eventId: string } }
+	{ params }: { params: EventIdSlug }
 ): Promise<NextResponse> {
 	// event一括取得
-	const eventId = params.eventId;
+	const eventId = (await params).eventId;
 
 	if (eventId) {
 		const command = new GetCommand({
@@ -37,10 +39,10 @@ export async function GET(
 
 export async function POST(
 	request: NextRequest,
-	{ params }: { params: { eventId: string } }
+	{ params }: { params: EventIdSlug }
 ): Promise<NextResponse> {
 	// 新規イベント作成及び既存イベントの更新
-	const eventId = params.eventId;
+	const eventId = (await params).eventId;
 	const item = await request.json();
 	item.EventId = eventId;
 	console.log(marshall(item));
@@ -63,9 +65,9 @@ export async function POST(
 
 export async function DELETE(
 	request: NextRequest,
-	{ params }: { params: { eventId: string } }
+	{ params }: { params: EventIdSlug }
 ) {
-	const eventId = params.eventId;
+	const eventId = (await params).eventId;
 
 	const command = new DeleteCommand({
 		TableName: "GlapeEvents",
