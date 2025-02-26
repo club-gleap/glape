@@ -16,27 +16,27 @@ const corsHeaders = {
 const client = new DynamoDBClient({});
 const docClient = DynamoDBDocumentClient.from(client);
 
-type EventIdSlug = Promise<{ eventId: string }>;
+type MemberIdSlug = Promise<{ memberId: string }>;
 
 export async function GET(
 	request: NextRequest,
-	{ params }: { params: EventIdSlug }
+	{ params }: { params: MemberIdSlug }
 ): Promise<NextResponse> {
-	// event一括取得
-	const eventId = (await params).eventId;
+	// member一括取得
+	const memberId = (await params).memberId;
 
-	if (eventId) {
+	if (memberId) {
 		const command = new GetCommand({
-			TableName: "GlapeEvents",
+			TableName: "GlapeMembers",
 			Key: {
-				EventId: eventId,
+				memberId: memberId,
 			},
 		});
 		const response = await docClient.send(command);
-		return NextResponse.json({ event: response }, { headers: corsHeaders });
+		return NextResponse.json({ member: response }, { headers: corsHeaders });
 	} else {
 		return NextResponse.json(
-			{ error: "EventId is required." },
+			{ error: "memberId is required." },
 			{ status: 500, headers: corsHeaders }
 		);
 	}
@@ -44,15 +44,15 @@ export async function GET(
 
 export async function POST(
 	request: NextRequest,
-	{ params }: { params: EventIdSlug }
+	{ params }: { params: MemberIdSlug }
 ): Promise<NextResponse> {
 	// 新規イベント作成及び既存イベントの更新
-	const eventId = (await params).eventId;
+	const memberId = (await params).memberId;
 	const item = await request.json();
-	item.EventId = eventId;
+	item.memberId = memberId;
 
 	const command = new PutCommand({
-		TableName: "GlapeEvents",
+		TableName: "GlapeMembers",
 		Item: item,
 	});
 	const response = await docClient.send(command);
@@ -61,7 +61,7 @@ export async function POST(
 	} else {
 		console.log(response);
 		return NextResponse.json(
-			{ error: "Can't put EventData" },
+			{ error: "Can't put MemberData" },
 			{ status: response.$metadata.httpStatusCode, headers: corsHeaders }
 		);
 	}
@@ -69,14 +69,14 @@ export async function POST(
 
 export async function DELETE(
 	request: NextRequest,
-	{ params }: { params: EventIdSlug }
+	{ params }: { params: MemberIdSlug }
 ) {
-	const eventId = (await params).eventId;
+	const memberId = (await params).memberId;
 
 	const command = new DeleteCommand({
-		TableName: "GlapeEvents",
+		TableName: "GlapeMembers",
 		Key: {
-			EventId: eventId,
+			memberId: memberId,
 		},
 	});
 	const response = await docClient.send(command);
@@ -86,7 +86,7 @@ export async function DELETE(
 	} else {
 		console.log(response);
 		return NextResponse.json(
-			{ error: "Can't delete EventData" },
+			{ error: "Can't delete MemberData" },
 			{ status: response.$metadata.httpStatusCode, headers: corsHeaders }
 		);
 	}
