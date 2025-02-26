@@ -23,6 +23,7 @@ export default function Page() {
         w="100%"
         direction={{ base: "column", lg: "row" }}
         gap={"0"}
+        pt={{base: "10px", lg: "0"}}
       >
         <Center
           h={{ base: "", lg: "100%" }}
