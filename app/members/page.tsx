@@ -1,4 +1,5 @@
 "use client";
+import { createMembers } from "@/features/members/components/communicateMembers";
 import {
   Box,
   Center,
@@ -24,6 +25,16 @@ export default function MemberList() {
     中田: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgMacnM6BrsFu-e0w9ZFZhyhSu-uoNBcfQ1hGDaVfcPeNOhpFylRFJuu3o6lf2tLCtXRI3J08FBsm1G_35qcqVwEbm3PBbMyOhbj1G3BfWE3ANk3F7V_na7963kds03gCmeUvsBTg5uCrg/s140/icon_business_man16.png",
   });
   //ここまで仮のデータ
+
+  interface MemberData {
+    member: string[]; // メンバー名の配列
+  }
+
+  const members: MemberData = {
+    member: ["田中", "斎藤", "佐藤", "中田"],
+  };
+
+  createMembers(members);
 
   return (
     <Center flexDirection="column">
