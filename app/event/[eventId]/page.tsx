@@ -18,94 +18,39 @@ import {
 } from "@chakra-ui/react";
 import { useParams } from "next/navigation";
 import { QRCodeSVG } from "qrcode.react";
-import { useState, useEffect } from "react";
-
-// イベントのデータ型を定義
-interface EventData {
-  EventName: string;
-  EventId: string;
-}
 
 export default function Home() {
-  const [eventData, setEventData] = useState<EventData | null>(null); // イベントデータの状態を管理
-  const [eventName, setEventName] = useState<string>("部会15"); // イベント名の状態
-  const newEventData: EventData = {
-    EventName: eventName,
-    EventId: "005", // 固定のEventIdを使用
+  //仮のデータ。
+
+  interface EventData {
+    [id: string]: {
+      name: string;
+      date: Date;
+      members: { [name: string]: boolean };
+    };
+  }
+
+  const eventData: EventData = {
+    aaa: {
+      name: "部会",
+      date: new Date("2025-12-14T18:30:00"),
+      members: {
+        田中太郎: true,
+        佐藤花子: false,
+      },
+    },
+
+    sss: {
+      name: "部会2",
+      date: new Date("2024-12-14T18:00:00"),
+      members: {
+        田中太郎: false,
+        佐藤花子: false,
+      },
+    },
   };
 
-  // イベントデータを作成して状態を更新する関数
-  const createEvent = async () => {
-    if (!eventName.trim()) {
-      console.log("Event name is empty");
-      return;
-    }
-
-    try {
-      const response = await fetch(
-        `https://develop.d316f8oyuwxdq0.amplifyapp.com/api/event/${newEventData.EventId}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newEventData),
-          //これを書くとリクエストが許可されるが、レスポンスが制限される
-          //あまり使わない方がいいらしい
-          //本番環境では書かなくてもいいらしい
-          mode: "no-cors",
-        }
-      );
-
-      if (response.ok) {
-        const result = await response.json();
-        // サーバーから返ってきた結果を基にeventDataを更新
-        setEventData(result); // サーバーから返されたデータを状態にセット
-        console.log("Event created successfully:", result);
-      } else {
-        console.error("Failed to create event:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Error creating event:", error);
-    }
-  };
-
-  const getEvent = async (eventId: string) => {
-    if (!eventId.trim()) {
-      console.log("Event ID is empty");
-      return;
-    }
-    console.log("ここは出来てる");
-
-    try {
-      console.log("トライはしている");
-      // `eventId`を使ってURLを動的に変更
-      const response = await fetch(
-        `https://feature-next-response-middleware.d316f8oyuwxdq0.amplifyapp.com/`
-      ); // イベントを取得するAPIにリクエスト
-      console.log("トライはしている2");
-      console.log(response.ok);
-      if (response.ok) {
-        console.log("成功はしている");
-        const data = await response.json(); // APIから返されたデータをパース
-        setEventData(data); // 取得したデータをstateにセット
-      } else {
-        console.log("失敗");
-        console.error("Failed to fetch event:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Error fetching event:", error);
-    }
-  };
-
-  // 最初にイベントデータを作成する
-  useEffect(() => {
-    createEvent(); // コンポーネントがマウントされたときにイベントを作成
-  }, []);
-
-  useEffect(() => {
-    getEvent("005");
-  }, []);
+  //ここまで仮のデータ
 
   // 出席ボタンを押したときの処理
   const attendButtonClick = () => {};
@@ -117,10 +62,10 @@ export default function Home() {
   const now = new Date();
   //残り時間
 
-  //const restTime = useDiffTimes(now, eventData[eventId].date);
+  const restTime = useDiffTimes(now, eventData[eventId].date);
 
   //終日と終了時間は実装するかわからないのでとりあえずnull
-  //const dateOfTheEvent = useDateOfTheEvent(null, eventData[eventId].date, null);
+  const dateOfTheEvent = useDateOfTheEvent(null, eventData[eventId].date, null);
 
   return (
     <Center flexDirection="column">
@@ -133,22 +78,15 @@ export default function Home() {
           color="gray.800"
           p={{ base: "2", lg: "4" }}
         >
-          {/* eventData が null でない場合のみ表示 */}
-          {eventData ? (
-            <>
-              <Center fontSize="3xl" ml="10px">
-                {eventData.EventName}
-              </Center>
-              <Center fontSize={{ base: "lg", lg: "2xl" }} ml="10px">
-                {/* {dateOfTheEvent} */}
-              </Center>
-              <Center fontSize={{ base: "md", lg: "xl" }} color="red" ml="10px">
-                {/* あと{restTime.days}日{restTime.hours}時間{restTime.minutes}分 */}
-              </Center>
-            </>
-          ) : (
-            <Center>イベントデータを読み込んでいます...</Center>
-          )}
+          <Center fontSize="3xl" ml="10px">
+            {eventData[eventId].name}
+          </Center>
+          <Center fontSize={{ base: "lg", lg: "2xl" }} ml="10px">
+            {dateOfTheEvent}
+          </Center>
+          <Center fontSize={{ base: "md", lg: "xl" }} color="red" ml="10px">
+            あと{restTime.days}日{restTime.hours}時間{restTime.minutes}分
+          </Center>
         </Box>
         <VStack>
           <Box>このページのQRコード</Box>
@@ -174,14 +112,14 @@ export default function Home() {
               </Tr>
             </Thead>
             <Tbody>
-              {/*{Object.entries(eventData[eventId].members).map(
-								([name, attendance], index) => (
-									<Tr key={index}>
-										<Td fontSize="20px">{name}</Td>
-										<Td isNumeric>{attendanceIcon(attendance)}</Td>
-									</Tr>
-								)
-							)}*/}
+              {Object.entries(eventData[eventId].members).map(
+                ([name, attendance], index) => (
+                  <Tr key={index}>
+                    <Td fontSize="20px">{name}</Td>
+                    <Td isNumeric>{attendanceIcon(attendance)}</Td>
+                  </Tr>
+                )
+              )}
             </Tbody>
           </Table>
         </TableContainer>
