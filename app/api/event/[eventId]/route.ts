@@ -7,6 +7,12 @@ import {
 } from "@aws-sdk/lib-dynamodb";
 import { NextRequest, NextResponse } from "next/server";
 
+const corsHeaders = {
+	"Access-Control-Allow-Origin": "http://localhost:3000",
+	"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+	"Access-Control-Allow-Headers": "Content-Type",
+};
+
 const client = new DynamoDBClient({});
 const docClient = DynamoDBDocumentClient.from(client);
 
@@ -27,11 +33,11 @@ export async function GET(
 			},
 		});
 		const response = await docClient.send(command);
-		return NextResponse.json({ response });
+		return NextResponse.json({ events: response }, { headers: corsHeaders });
 	} else {
 		return NextResponse.json(
 			{ error: "EventId is required." },
-			{ status: 500 }
+			{ status: 500, headers: corsHeaders }
 		);
 	}
 }
@@ -51,12 +57,12 @@ export async function POST(
 	});
 	const response = await docClient.send(command);
 	if (response.$metadata.httpStatusCode === 200) {
-		return NextResponse.json({ message: "OK" });
+		return NextResponse.json({ message: "OK" }, { headers: corsHeaders });
 	} else {
 		console.log(response);
 		return NextResponse.json(
 			{ error: "Can't put EventData" },
-			{ status: response.$metadata.httpStatusCode }
+			{ status: response.$metadata.httpStatusCode, headers: corsHeaders }
 		);
 	}
 }
@@ -76,12 +82,16 @@ export async function DELETE(
 	const response = await docClient.send(command);
 	console.log(response);
 	if (response.$metadata.httpStatusCode === 200) {
-		return NextResponse.json({ message: "OK" });
+		return NextResponse.json({ message: "OK" }, { headers: corsHeaders });
 	} else {
 		console.log(response);
 		return NextResponse.json(
 			{ error: "Can't delete EventData" },
-			{ status: response.$metadata.httpStatusCode }
+			{ status: response.$metadata.httpStatusCode, headers: corsHeaders }
 		);
 	}
+}
+
+export async function OPTIONS() {
+	return NextResponse.json({}, { headers: corsHeaders });
 }
