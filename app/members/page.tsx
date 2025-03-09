@@ -14,7 +14,7 @@ import {
   HStack,
   Image,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function MemberList() {
   //仮のデータ。本番ではどこかからデータを読み込む？
@@ -27,14 +27,26 @@ export default function MemberList() {
   //ここまで仮のデータ
 
   interface MemberData {
-    member: string[]; // メンバー名の配列
+    [key: string]: string;
   }
 
   const members: MemberData = {
-    member: ["田中", "斎藤", "佐藤", "中田"],
+    田中: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjt-bzPefGvMhHKHwghRbqNmlUqLpx_LhFoMq5Tq5Sl-eaeinrP_2sdSxIjdYHk6R5vOsIwYN_grUOWysKpGnExDqtLhb9Cs3CN3ZUHeJ6x3J7TrS4kGsiuLpZXnqfF_Lv0oSNJtqUAXyA/s800/icon_business_man02.png",
+    佐藤: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhoMp7sL7BcgiOAIa6UbFCOJ9rjYJHKZ8S-YU6WgcJh_tkt7adUvtSEnt0BifDnAcz6wKaCW20NZlmDA0CqZMEsFVIDsDIr6rv1rbhvddWgEb_FYIKVAbr9IqAwRl_sT6ujPhh857uINp8/s800/icon_business_man03.png",
   };
+  console.log("ログ１");
 
-  createMembers(members);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    console.log("ログ２");
+    setIsClient(true); // クライアントサイドでのみ実行
+    createMembers(members); // createMembersの呼び出し
+  }, []); // allMembersが変更されるたびに実行される
+
+  if (!isClient) {
+    return null; // サーバーサイドではコンポーネントをレンダリングしない
+  }
 
   return (
     <Center flexDirection="column">
