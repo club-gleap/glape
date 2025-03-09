@@ -49,7 +49,7 @@ export async function POST(
 	// 新規イベント作成及び既存イベントの更新
 	const memberId = (await params).memberId;
 	const item = await request.json();
-	item.memberId = memberId;
+	item.MemberId = memberId;
 
 	const command = new PutCommand({
 		TableName: "GlapeMembers",
