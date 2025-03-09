@@ -29,7 +29,7 @@ export async function GET(
 		const command = new GetCommand({
 			TableName: "GlapeMembers",
 			Key: {
-				memberId: memberId,
+				MemberId: memberId,
 			},
 		});
 		const response = await docClient.send(command);
