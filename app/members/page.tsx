@@ -41,11 +41,7 @@ export default function MemberList() {
 	return (
 		<Center flexDirection="column">
 			<Stack width={{ base: "90%", md: "30%" }} mt="20px">
-				<TableContainer
-					rounded="10px"
-					borderColor="gray.600"
-					borderWidth="3px"
-				>
+				<TableContainer rounded="10px" borderColor="gray.600" borderWidth="3px">
 					<Table
 						variant="striped"
 						colorScheme="gray"
@@ -76,9 +72,7 @@ export default function MemberList() {
 													}} // 画像を円形にするスタイル
 													alt=""
 												/>
-												<Box fontWeight="bold">
-													{member.name}
-												</Box>
+												<Box fontWeight="bold">{member.name}</Box>
 											</HStack>
 										</Td>
 									</Tr>
@@ -89,19 +83,11 @@ export default function MemberList() {
 				</TableContainer>
 				<Center>
 					<HStack>
-						<Button
-							size="lg"
-							colorScheme="purple"
-							onClick={deleteAllMembers}
-						>
+						<Button size="lg" colorScheme="purple" onClick={deleteAllMembers}>
 							全員削除　
 							<DeleteIcon />
 						</Button>
-						<Button
-							size="lg"
-							colorScheme="purple"
-							onClick={deleteOneMember}
-						>
+						<Button size="lg" colorScheme="purple" onClick={deleteOneMember}>
 							１人削除　
 							<DeleteIcon />
 						</Button>
