@@ -5,8 +5,8 @@ import {
   VStack,
   Center,
   Image,
-  Button,
 } from "@chakra-ui/react";
+import SignOut from "../components/signOutButton";
 
 export default function Page() {
   return (
@@ -38,9 +38,7 @@ export default function Page() {
             <Text>学部: 工学部 電気情報工学科</Text>
           </Box>
         </VStack>
-        <Button w="10em" minHeight="20px" size={"lg"} colorScheme={"purple"}>
-          ログアウト
-        </Button>
+        <SignOut />
       </VStack>
     </Flex>
   );

@@ -12,7 +12,7 @@ import {
   Center,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import discordLogin from "./serverAction";
+import { discordLogin } from "./serverAction";
 import { FaCheck, FaDiscord, FaEnvelope } from "react-icons/fa";
 
 export default function Page() {
@@ -23,7 +23,7 @@ export default function Page() {
         w="100%"
         direction={{ base: "column", lg: "row" }}
         gap={"0"}
-        pt={{base: "10px", lg: "0"}}
+        pt={{ base: "10px", lg: "0"}}
       >
         <Center
           h={{ base: "", lg: "100%" }}
@@ -92,6 +92,8 @@ export default function Page() {
               メールアドレスでログイン
             </Button>
             <Button
+              as={Link}
+              href="/signup"
               w={{ base: "16em", md: "20em" }}
               minHeight="20px"
               size={"lg"}

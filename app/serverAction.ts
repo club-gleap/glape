@@ -2,6 +2,10 @@
 
 import { signIn } from "@/auth";
 
-export default async function discordLogin() {
+export async function discordLogin() {
   await signIn("discord")
+}
+
+export async function emailLogin(formData: FormData) {
+  await signIn("credentials", formData);
 }

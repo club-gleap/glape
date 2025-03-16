@@ -9,7 +9,6 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { EmailIcon, LockIcon } from "@chakra-ui/icons";
-import { emailLogin } from "../serverAction";
 
 export default function LoginPage() {
   return (
@@ -28,25 +27,23 @@ export default function LoginPage() {
         justifyContent={"space-evenly"}
       >
         <Box fontWeight="bold" fontSize="30px">
-          メンバーログイン
+          メールで新規登録
         </Box>
-        <form action={emailLogin}>
-          <Flex width="80%">
-            <EmailIcon boxSize="40px" mr="10px" />
-            <FormControl>
-              <Input name="email" type="email" />
-            </FormControl>
-          </Flex>
-          <Flex width="80%">
-            <LockIcon boxSize="40px" mr="10px" />
-            <FormControl>
-              <Input name="password" type="password" />
-            </FormControl>
-          </Flex>
-          <Button colorScheme="blue" size="lg" type="submit">
-            ログイン
-          </Button>
-        </form>
+        <Flex width="80%">
+          <EmailIcon boxSize="40px" mr="10px" />
+          <FormControl>
+            <Input type="email" />
+          </FormControl>
+        </Flex>
+        <Flex width="80%">
+          <LockIcon boxSize="40px" mr="10px" />
+          <FormControl>
+            <Input type="password" />
+          </FormControl>
+        </Flex>
+        <Button colorScheme="blue" size="lg">
+          登録
+        </Button>
       </VStack>
     </Center>
   );
