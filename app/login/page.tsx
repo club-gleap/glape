@@ -7,11 +7,14 @@ import {
   FormControl,
   Input,
   VStack,
+  useToast,
 } from "@chakra-ui/react";
 import { EmailIcon, LockIcon } from "@chakra-ui/icons";
 import { emailLogin } from "../serverAction";
 
 export default function LoginPage() {
+  const toast = useToast();
+
   return (
     <Center
       h="100%"
@@ -30,22 +33,38 @@ export default function LoginPage() {
         <Box fontWeight="bold" fontSize="30px">
           メンバーログイン
         </Box>
-        <form action={emailLogin}>
-          <Flex width="80%">
-            <EmailIcon boxSize="40px" mr="10px" />
-            <FormControl>
-              <Input name="email" type="email" />
-            </FormControl>
-          </Flex>
-          <Flex width="80%">
-            <LockIcon boxSize="40px" mr="10px" />
-            <FormControl>
-              <Input name="password" type="password" />
-            </FormControl>
-          </Flex>
-          <Button colorScheme="blue" size="lg" type="submit">
-            ログイン
-          </Button>
+        <form
+          action={(data) => {
+            const res = emailLogin(data);
+            if (res.message === "failed to login") {
+              toast({
+                title: "エラー",
+                description: "ログインに失敗しました",
+                status: "error",
+                duration: 5000,
+                isClosable: true,
+              });
+            }
+          }}
+          style={{ width: "100%" }}
+        >
+          <VStack w="100%" gap="20px">
+            <Flex width="80%">
+              <EmailIcon boxSize="40px" mr="10px" />
+              <FormControl>
+                <Input name="email" type="email" />
+              </FormControl>
+            </Flex>
+            <Flex width="80%">
+              <LockIcon boxSize="40px" mr="10px" />
+              <FormControl>
+                <Input name="password" type="password" />
+              </FormControl>
+            </Flex>
+            <Button colorScheme="blue" size="lg" type="submit">
+              ログイン
+            </Button>
+          </VStack>
         </form>
       </VStack>
     </Center>

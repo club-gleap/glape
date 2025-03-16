@@ -25,14 +25,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         // logic to verify if the user exists
         user = await getUserFromDb(email, pwHash);
-
-        console.log("a");
         if (!user) {
-          // No user found, so this is their first attempt to login
-          // Optionally, this is also the place you could do a user registration
           return false;
         }
-        console.log("b");
 
         // return user object with their profile data
         return user;
