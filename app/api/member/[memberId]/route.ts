@@ -76,7 +76,7 @@ export async function DELETE(
 	const command = new DeleteCommand({
 		TableName: "GlapeMembers",
 		Key: {
-			memberId: memberId,
+			MemberId: memberId,
 		},
 	});
 	const response = await docClient.send(command);
