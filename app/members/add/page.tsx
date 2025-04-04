@@ -1,5 +1,6 @@
 "use client";
 import { createMembers } from "@/features/members/components/communicateMembers";
+import { MemberData } from "@/features/members/types/memberData";
 import { Box, Center, Input, Stack, Text, Button } from "@chakra-ui/react";
 import { useState } from "react";
 
@@ -7,19 +8,11 @@ export default function MemberAdd() {
 	const [addName, setAddName] = useState("");
 	const [addImgUrl, setImgUrl] = useState("");
 
-	interface MemberData {
-		name: string;
-		imgUrl: string;
-	}
-
 	const buttonClick = () => {
-		const newMembers: MemberData[] = [
-			{
-				name: addName,
-				imgUrl: addImgUrl,
-			},
-		];
-
+		const newMembers: MemberData = {
+			name: addName,
+			imgUrl: addImgUrl,
+		};
 		createMembers(newMembers);
 		setAddName("");
 		setImgUrl("");
@@ -42,7 +35,7 @@ export default function MemberAdd() {
 				<Stack>
 					<Text fontSize="15px">画像URL</Text>
 					<Input
-						placeholder="https://develop.d316f8oyuwxdq0.amplifyapp.com/img/glape-icon.png"
+						placeholder="https://〇〇〇〇.png"
 						value={addImgUrl}
 						onChange={(e) => setImgUrl(e.target.value)}
 					/>
